@@ -55,17 +55,12 @@ public class Check {
 	SecretKeySpec keySpec = new SecretKeySpec(keyBytes, "AES");
     IvParameterSpec ivSpec = new IvParameterSpec(keyBytesiv);
 	cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
-	 
+	byte[] results = cipher.doFinal(text.getBytes("UTF-8"));
+	BASE64Encoder encoder = new BASE64Encoder();
+	return encoder.encode(results);
 	
-	return BASE64ENCODE();
+	
 	}
 	
-	public static String BASE64ENCODE()
-	{
-		
-		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-		byte[] results = cipher.doFinal(text.getBytes("UTF-8"));
-		BASE64Encoder encoder = new BASE64Encoder();
-		return encoder.encode(results);
-	}
+	
 }
